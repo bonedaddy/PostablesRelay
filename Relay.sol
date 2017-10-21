@@ -74,4 +74,12 @@ contract ControlHub is Administration {
         whiteListArray[_id].allowed[_whiteListedAddress] = true;
         return true;
     }
+
+    function callAddress(address _targetContract, string _functionSign, uint256 _argValues)
+        public
+        returns (bool _success)
+    {
+        _targetContract.call(bytes4(keccak256(_functionSign)), _argValues)
+        return true;
+    }
 }

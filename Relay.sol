@@ -54,9 +54,8 @@ contract ControlHub is Administration {
         returns (bool _added)
     {
         require(_contract != address(0x0));
-        WhiteListArrayStruct memory w;
+        WhiteListStruct memory w;
         w.contractAddress = _contract;
-        w.allowed[msg.sender] = true;
         whiteListArray.push(w);
         whiteListArrayId[_contract] = numContractsRegistered;
         numContractsRegistered = numContractsRegistered.add(1);
@@ -69,7 +68,9 @@ contract ControlHub is Administration {
         postLaunch
         returns (bool _whiteListed)
     {
-        require(contractSubmitter)
+        require(contractSubmitter[_targetContract] == msg.sender);
         uint256 _id = whiteListArrayId[_targetContract];
+        whiteListArray[_id].allowed[_whiteListedAddress] = true;
+        return true;
     }
 }

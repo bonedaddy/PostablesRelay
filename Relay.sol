@@ -57,6 +57,7 @@ contract ControlHub is Administration {
         WhiteListStruct memory w;
         w.contractAddress = _contract;
         whiteListArray.push(w);
+        targetContractList.push(_contract);
         whiteListArrayId[_contract] = numContractsRegistered;
         numContractsRegistered = numContractsRegistered.add(1);
         contractSubmitter[_contract] = msg.sender;

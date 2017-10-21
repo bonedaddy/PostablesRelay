@@ -10,7 +10,7 @@ contract Administration {
     event AddMod(address indexed _invoker, address indexed _newMod, bool indexed _modAdded);
     event RemoveMod(address indexed _invoker, address indexed _removeMod, bool indexed _modRemoved);
 
-    function Administration() {
+    function Administration() public {
         owner = msg.sender;
     }
 
@@ -24,20 +24,20 @@ contract Administration {
         _; // function code inserted here
     }
 
-    function transferOwnership(address _newOwner) onlyOwner returns (bool success) {
+    function transferOwnership(address _newOwner) public onlyOwner returns (bool success) {
         owner = _newOwner;
         return true;
         
     }
 
-    function addModerator(address _newMod) onlyOwner returns (bool added) {
+    function addModerator(address _newMod) public onlyOwner returns (bool added) {
         require(_newMod != address(0x0));
         moderators[_newMod] = true;
         AddMod(msg.sender, _newMod, true);
         return true;
     }
     
-    function removeModerator(address _removeMod) onlyOwner returns (bool removed) {
+    function removeModerator(address _removeMod) public onlyOwner returns (bool removed) {
         require(_removeMod != address(0x0));
         moderators[_removeMod] = false;
         RemoveMod(msg.sender, _removeMod, true);

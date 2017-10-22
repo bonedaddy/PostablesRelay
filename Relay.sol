@@ -79,7 +79,7 @@ contract ControlHub is Administration {
         public
         returns (bool _success)
     {
-        _targetContract.call(bytes4(keccak256(_functionSign)), _argValues)
+        require(_targetContract.call(bytes4(keccak256(_functionSign)), _argValues));
         return true;
     }
 }

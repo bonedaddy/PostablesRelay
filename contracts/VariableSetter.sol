@@ -25,6 +25,7 @@ contract VariableSetter is SafetyControls {
         onlyAdmin
         returns (bool _launched)
     {
+        operationsPaused = false;
         contractLaunched = true;
         return true;
     }
@@ -36,5 +37,13 @@ contract VariableSetter is SafetyControls {
     {
         intStore = _newInt;
         return true;
+    }
+
+    function getIntStore()
+        public
+        constant
+        returns (uint256 _intStore)
+    {
+        return intStore;
     }
 }

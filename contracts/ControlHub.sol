@@ -75,11 +75,19 @@ contract ControlHub is Administration {
         return true;
     }
 
-    function callAddress(address _targetContract, string _functionSign, uint256 _argValues)
+    function callAddress(address _targetContract, string _functionSign,  string _argValues)
         public
         returns (bool _success)
     {
         require(_targetContract.call(bytes4(keccak256(_functionSign)), _argValues));
+        return true;
+    }
+
+    function IntSet(address _targetContract, uint256 _newInt)
+        public
+        returns (bool _success)
+    {
+        require(_targetContract.call(bytes4(keccak256("setInt(uint256)")), _newInt));
         return true;
     }
 }

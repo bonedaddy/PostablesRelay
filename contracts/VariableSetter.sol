@@ -1,20 +1,21 @@
 pragma solidity 0.4.18;
 
-import './SafeMath.sol';
-import './Administration.sol';
-import './SafetyControls.sol';
+import './modules/SafeMath.sol';
+import './modules/Administration.sol';
+import './modules/SafetyControls.sol';
 
 contract VariableSetter is SafetyControls {
     using SafeMath for uint256;
 
-    bool contractLaunched;
+    uint256 public intStore;
+    bool    public contractLaunched;
 
     modifier preLaunch() {
         require(!contractLaunched);
         _;
     }
 
-    function VariableSetter() {
+    function VariableSetter() public {
         contractLaunched = false;
     }
 
@@ -28,5 +29,12 @@ contract VariableSetter is SafetyControls {
         return true;
     }
 
-    functi
+    function setInt(uint256 _newInt)
+        public
+        isRunning
+        returns (bool _set)
+    {
+        intStore = _newInt;
+        return true;
+    }
 }

@@ -1,7 +1,7 @@
 pragma solidity 0.4.18;
 
-import './SafeMath.sol';
-import './Administration.sol';
+import './modules/SafeMath.sol';
+import './modules/Administration.sol';
 
 contract ControlHub is Administration {
     using SafeMath for uint256;

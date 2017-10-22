@@ -9,12 +9,12 @@ contract SafetyControls is Administration {
     event PauseOperation(address indexed _invoker, bool indexed _paused);
     event ResumeOperation(address indexed _invoker, bool indexed _resumed);
 
-    modifier operationsRunning() {
+    modifier isRunning() {
         require(!operationsPaused);
         _;
     }
     
-    function SafetyControls() {
+    function SafetyControls() public {
         operationsPaused = true;
     }
 

@@ -2,7 +2,7 @@ pragma solidity 0.4.18;
 
 import './Administration.sol';
 
-contract SafetyControls is Administration.sol {
+contract SafetyControls is Administration {
 
     bool operationsPaused;
 

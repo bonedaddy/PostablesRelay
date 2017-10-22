@@ -75,6 +75,12 @@ contract ControlHub is Administration {
         return true;
     }
 
+    /*
+        ** So far this isn't working, we can succesfully call the function at the target contract
+            ** however we can't properly pass in the value (yet)
+            ** One idea is to change the destination data type to bytes32, and simply pass in
+            ** an argument as types bytes32, or pass in the desired data type, and generate a keccak hash
+    */
     function callAddress(address _targetContract, string _functionSign,  string _argValues)
         public
         returns (bool _success)

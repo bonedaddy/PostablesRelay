@@ -4,18 +4,23 @@ import './Administration.sol';
 
 contract SafetyControls is Administration {
 
-    bool operationsPaused;
+    bool public operationsPaused;
 
     event PauseOperation(address indexed _invoker, bool indexed _paused);
     event ResumeOperation(address indexed _invoker, bool indexed _resumed);
 
+    modifier operationsRunning() {
+        require(!operationsPaused);
+        _;
+    }
+    
     function SafetyControls() {
         operationsPaused = true;
     }
 
     function pauseOperation()
         public
-        onlyAdmins
+        onlyAdmin
         returns (bool _paused)
     {
         require(!operationsPaused);
@@ -26,7 +31,7 @@ contract SafetyControls is Administration {
     
     function resumeOperation()
         public
-        onlyAdmins
+        onlyAdmin
         returns (bool _resumed)
     {
         require(operationsPaused);

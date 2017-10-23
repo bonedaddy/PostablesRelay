@@ -1,3 +1,1 @@
-# PostablesRelay
-
-Using to learn about upgradeable contracts, `delegatecall`, and `call`
+# Moved to https://github.com/postables/Postables-Solidity-Modules

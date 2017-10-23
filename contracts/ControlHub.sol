@@ -8,6 +8,8 @@ contract ControlHub is Administration {
 
     address[]   public  targetContractList;
     uint256     public  numContractsRegistered;
+    bytes32     public  intHashSig;
+    bytes32     public  boolHashSig;
     bool        public  contractLaunched;
 
     struct WhiteListStruct {
@@ -36,6 +38,8 @@ contract ControlHub is Administration {
     function Relay() public {
         contractLaunched = false;
         numContractsRegistered = 0;
+        intHashSig = keccak256("int");
+        boolHashSig = keccak256("bool");
     }
 
     function launchContract()
